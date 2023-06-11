@@ -10,6 +10,7 @@ public class SceneElementSumLengthVisitor implements SceneElementVisitor {
 
     @Override
     public void visit(Point point) { /* nothing */ }
+
     @Override
     public void visit(Line line) {
         this.length += Math.sqrt(
@@ -17,6 +18,7 @@ public class SceneElementSumLengthVisitor implements SceneElementVisitor {
                         + Math.pow((line.getEnd().getY() - line.getStart().getY()), 2)
         );
     }
+
     @Override
     public void visit(Polyline polyline) {
         ArrayList<Point> points = polyline.getPoints();
@@ -28,6 +30,7 @@ public class SceneElementSumLengthVisitor implements SceneElementVisitor {
             );
         }
     }
+
     @Override
     public void visit(Rectangle rectangle) {
         Point a = rectangle.getA();
@@ -39,6 +42,7 @@ public class SceneElementSumLengthVisitor implements SceneElementVisitor {
 
         this.length += 2 * (sideA + sideB);
     }
+
     @Override
     public void visit(Ellipse ellipse) {
         Point a;
