@@ -59,7 +59,7 @@ public class Polyline extends Curve implements ScalableSceneElement<Polyline> {
             tmp = tmp.concat(atom);
         }
 
-        String buffer = tmp.trim().concat(";\n");
+        final String buffer = tmp.trim().concat(";\n");
 
         return skipUuids
                 ? buffer
@@ -67,18 +67,18 @@ public class Polyline extends Curve implements ScalableSceneElement<Polyline> {
     }
 
     @Override
-    public void visit(SceneElementVisitor sceneElementVisitor) {
+    public void accept(SceneElementVisitor sceneElementVisitor) {
         sceneElementVisitor.visit(this);
     }
 
     private ArrayList<Point> parsePoints(ArrayList<String> source) {
-        int size = Integer.decode(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.POLYLINE_SIZE)));
-        int countOfPoints = size * 2;
+        final int size = Integer.decode(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.POLYLINE_SIZE)));
+        final int countOfPoints = size * 2;
 
-        ArrayList<Point> points = new ArrayList<>(countOfPoints);
+        final ArrayList<Point> points = new ArrayList<>(countOfPoints);
 
-        int start = parserKeyMap.get(SceneElementParserSourceIndexer.POLYLINE_DESCRIPTION_START);
-        int end = countOfPoints + 2;
+        final int start = parserKeyMap.get(SceneElementParserSourceIndexer.POLYLINE_DESCRIPTION_START);
+        final int end = countOfPoints + 2;
 
         for (int i = start; i < end; i += 2) {
             double x = ParseUtils.parseDouble(source.get(i));

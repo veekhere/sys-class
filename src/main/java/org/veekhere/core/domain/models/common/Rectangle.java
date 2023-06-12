@@ -58,9 +58,9 @@ public class Rectangle extends SceneElement implements
     }
 
     public String stringify(Boolean skipUuids) {
-        Point a = this.getA();
-        Point b = this.getB();
-        String buffer = String.format("%s %f %f %f %f;\n",
+        final Point a = this.getA();
+        final Point b = this.getB();
+        final String buffer = String.format("%s %f %f %f %f;\n",
                 this.getType(),
                 a.getX(),
                 a.getY(),
@@ -74,19 +74,19 @@ public class Rectangle extends SceneElement implements
     }
 
     @Override
-    public void visit(SceneElementVisitor sceneElementVisitor) {
+    public void accept(SceneElementVisitor sceneElementVisitor) {
         sceneElementVisitor.visit(this);
     }
 
     private Point getA(ArrayList<String> source) {
-        double xa = ParseUtils.parseDouble(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.XA_COORDINATE)));
-        double ya = ParseUtils.parseDouble(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.YA_COORDINATE)));
+        final double xa = ParseUtils.parseDouble(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.XA_COORDINATE)));
+        final double ya = ParseUtils.parseDouble(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.YA_COORDINATE)));
         return new Point(xa, ya);
     }
 
     private Point getB(ArrayList<String> source) {
-        double xb = ParseUtils.parseDouble(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.XB_COORDINATE)));
-        double yb = ParseUtils.parseDouble(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.YB_COORDINATE)));
+        final double xb = ParseUtils.parseDouble(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.XB_COORDINATE)));
+        final double yb = ParseUtils.parseDouble(source.get(parserKeyMap.get(SceneElementParserSourceIndexer.YB_COORDINATE)));
         return new Point(xb, yb);
     }
 }

@@ -36,4 +36,9 @@ public class SceneElementParserService implements SceneElementParser {
             default -> throw new RuntimeException("Unknown scene element type");
         };
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException();
+    }
 }

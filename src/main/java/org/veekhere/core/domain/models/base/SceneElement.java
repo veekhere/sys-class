@@ -28,5 +28,5 @@ public abstract class SceneElement implements StringfiableSceneElement {
 
     public abstract String stringify(Boolean skipUuids);
 
-    public abstract void visit(SceneElementVisitor sceneElementVisitor);
+    public abstract void accept(SceneElementVisitor sceneElementVisitor);
 }

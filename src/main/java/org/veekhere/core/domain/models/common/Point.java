@@ -90,7 +90,7 @@ public class Point extends SceneElement implements
     }
 
     public String stringify(Boolean skipUuids) {
-        String buffer = String.format("%s %f %f;\n",
+        final String buffer = String.format("%s %f %f;\n",
                 this.getType(),
                 this.getX(),
                 this.getY()
@@ -102,7 +102,7 @@ public class Point extends SceneElement implements
     }
 
     @Override
-    public void visit(SceneElementVisitor sceneElementVisitor) {
+    public void accept(SceneElementVisitor sceneElementVisitor) {
         sceneElementVisitor.visit(this);
     }
 }

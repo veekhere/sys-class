@@ -45,19 +45,19 @@ public class GeometricScene implements StringfiableSceneElement {
 
     public void displayLength() {
         for(SceneElement element: this.scene) {
-            element.visit(this.sceneElementSumLengthVisitor);
+            element.accept(this.sceneElementSumLengthVisitor);
         }
         System.out.print(this.sceneElementSumLengthVisitor.length);
     }
 
     public void saveScene() {
-        String data = this.stringify(false);
+        final String data = this.stringify(false);
         this.fileName = FileService.generateName(this.uuid, ElementType.Scene);
         FileService.createFile(data, this.fileName);
     }
 
     public void parseData() {
-        ArrayList<ArrayList<String>> data = FileService.readFile(this.fileName);
+        final ArrayList<ArrayList<String>> data = FileService.readFile(this.fileName);
         for (ArrayList<String> list : data) {
             this.add(this.sceneElementParser.parse(list));
         }
@@ -66,7 +66,7 @@ public class GeometricScene implements StringfiableSceneElement {
     public String stringify(Boolean skipUuids) {
         String buffer = "";
 
-        for (SceneElement element : this.getScene()) {
+        for (final SceneElement element : this.scene) {
             buffer = buffer.concat(element.stringify(skipUuids));
         }
 

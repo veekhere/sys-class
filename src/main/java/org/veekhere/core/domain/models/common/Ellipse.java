@@ -69,8 +69,8 @@ public class Ellipse extends Curve {
     }
 
     public String stringify(Boolean skipUuids) {
-        Point center = this.getCenter();
-        String buffer = String.format("%s %f %f %f %f;\n",
+        final Point center = this.getCenter();
+        final String buffer = String.format("%s %f %f %f %f;\n",
                 this.getType(),
                 center.getX(),
                 center.getY(),
@@ -84,26 +84,26 @@ public class Ellipse extends Curve {
     }
 
     private Point getCenter(ArrayList<String> source) {
-        int xIndex = parserKeyMap.get(SceneElementParserSourceIndexer.XA_COORDINATE);
-        int yIndex = parserKeyMap.get(SceneElementParserSourceIndexer.YA_COORDINATE);
-        double x = ParseUtils.parseDouble(source.get(xIndex));
-        double y = ParseUtils.parseDouble(source.get(yIndex));
+        final int xIndex = parserKeyMap.get(SceneElementParserSourceIndexer.XA_COORDINATE);
+        final int yIndex = parserKeyMap.get(SceneElementParserSourceIndexer.YA_COORDINATE);
+        final double x = ParseUtils.parseDouble(source.get(xIndex));
+        final double y = ParseUtils.parseDouble(source.get(yIndex));
 
         return new Point(x, y);
     }
 
     private double getXRadius(ArrayList<String> source) {
-        int xIndex = parserKeyMap.get(SceneElementParserSourceIndexer.XB_COORDINATE);
+        final int xIndex = parserKeyMap.get(SceneElementParserSourceIndexer.XB_COORDINATE);
         return ParseUtils.parseDouble(source.get(xIndex));
     }
 
     private double getYRadius(ArrayList<String> source) {
-        int yIndex = parserKeyMap.get(SceneElementParserSourceIndexer.YB_COORDINATE);
+        final int yIndex = parserKeyMap.get(SceneElementParserSourceIndexer.YB_COORDINATE);
         return ParseUtils.parseDouble(source.get(yIndex));
     }
 
     @Override
-    public void visit(SceneElementVisitor sceneElementVisitor) {
+    public void accept(SceneElementVisitor sceneElementVisitor) {
         sceneElementVisitor.visit(this);
     }
 }

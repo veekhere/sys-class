@@ -75,33 +75,33 @@ public class Line extends Curve implements
     }
 
     public double length() {
-        double arg1 = Math.pow((this.end.getX() - this.start.getX()), 2);
-        double arg2 = Math.pow((this.end.getY() - this.start.getY()), 2);
+        final double arg1 = Math.pow((this.end.getX() - this.start.getX()), 2);
+        final double arg2 = Math.pow((this.end.getY() - this.start.getY()), 2);
         return Math.sqrt(arg1 + arg2);
     }
 
     private Point getStart(ArrayList<String> source) {
-        int xIndex = parserKeyMap.get(SceneElementParserSourceIndexer.XA_COORDINATE);
-        int yIndex = parserKeyMap.get(SceneElementParserSourceIndexer.YA_COORDINATE);
-        double xa = ParseUtils.parseDouble(source.get(xIndex));
-        double ya = ParseUtils.parseDouble(source.get(yIndex));
+        final int xIndex = parserKeyMap.get(SceneElementParserSourceIndexer.XA_COORDINATE);
+        final int yIndex = parserKeyMap.get(SceneElementParserSourceIndexer.YA_COORDINATE);
+        final double xa = ParseUtils.parseDouble(source.get(xIndex));
+        final double ya = ParseUtils.parseDouble(source.get(yIndex));
 
         return new Point(xa, ya);
     }
 
     private Point getEnd(ArrayList<String> source) {
-        int xIndex = parserKeyMap.get(SceneElementParserSourceIndexer.XB_COORDINATE);
-        int yIndex = parserKeyMap.get(SceneElementParserSourceIndexer.YB_COORDINATE);
-        double xb = ParseUtils.parseDouble(source.get(xIndex));
-        double yb = ParseUtils.parseDouble(source.get(yIndex));
+        final int xIndex = parserKeyMap.get(SceneElementParserSourceIndexer.XB_COORDINATE);
+        final int yIndex = parserKeyMap.get(SceneElementParserSourceIndexer.YB_COORDINATE);
+        final double xb = ParseUtils.parseDouble(source.get(xIndex));
+        final double yb = ParseUtils.parseDouble(source.get(yIndex));
 
         return new Point(xb, yb);
     }
 
     public String stringify(Boolean skipUuids) {
-        Point start = this.getStart();
-        Point end = this.getEnd();
-        String buffer = String.format("%s %f %f %f %f;\n",
+        final Point start = this.getStart();
+        final Point end = this.getEnd();
+        final String buffer = String.format("%s %f %f %f %f;\n",
                 this.getType(),
                 start.getX(),
                 start.getY(),
@@ -115,7 +115,7 @@ public class Line extends Curve implements
     }
 
     @Override
-    public void visit(SceneElementVisitor sceneElementVisitor) {
+    public void accept(SceneElementVisitor sceneElementVisitor) {
         sceneElementVisitor.visit(this);
     }
 }
